@@ -1,0 +1,9 @@
+<app-jumbotron [Titolo]="'Benvenuti in Alphashop'" [SottoTitolo]="'Cerca gli articoli da acquistare'" [Show]="false"></app-jumbotron>
+
+<div style="text-align:center;">
+  Ciao {{utente}}! Clicca <a routerLink="/articoli">qui</a> per vedere gli articoli disponibili!
+  <br>
+  <button type="button" (click)="getSaluti()" class="btn btn-primary">Saluti</button>
+  <br>
+  <h2>{{messaggio}}</h2>
+</div>
