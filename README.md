@@ -8,3 +8,5 @@
 	2. AuthServerJWT
 	3. Products, PriceArt & Promo
  3. Start Angular application on Visual Studio Code.
+ 
+ Credit: Nicola La Rocca ("Sviluppare Full Stack Applications con Spring Boot e Angular" - Corso Udemy)
