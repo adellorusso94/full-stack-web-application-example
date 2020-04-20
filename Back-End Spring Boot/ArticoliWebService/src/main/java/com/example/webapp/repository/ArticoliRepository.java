@@ -1,0 +1,19 @@
+package com.example.webapp.repository;
+
+import java.util.List;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
+
+import com.example.webapp.entity.Articoli;
+
+public interface ArticoliRepository extends PagingAndSortingRepository<Articoli,String> {
+	
+	@Query(value="SELECT * FROM ARTICOLI WHERE DESCRIZIONE LIKE :desArt", nativeQuery=true)
+	List<Articoli> SelByDescrizioneLike(@Param("desArt") String descrizione);
+	List<Articoli> findByDescrizioneLike(String descrizione, Pageable pageable);
+	Articoli findByCodArt(String codArt);
+	
+}
