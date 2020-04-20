@@ -7,4 +7,4 @@
 	1. GestUser
 	2. AuthServerJWT
 	3. Products, PriceArt & Promo
- 3. Start Angular application on Visual Code Studio.
+ 3. Start Angular application on Visual Studio Code.
