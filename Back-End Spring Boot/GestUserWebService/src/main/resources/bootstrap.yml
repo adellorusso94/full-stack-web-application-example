@@ -1,0 +1,14 @@
+## GESTUSER_WEB_SERVICE PROPERTIES
+server:
+  port: 8019
+spring:
+  application:
+    name: GestUser
+  profiles:
+    active: nossl
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      username: StdUser
+      password: BimBumBam_2020

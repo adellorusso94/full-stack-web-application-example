@@ -1,0 +1,9 @@
+## SPRING CONFIG SERVER
+spring:
+  application:
+    name: ConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///d:/Documenti/GitHub/git-config-repository

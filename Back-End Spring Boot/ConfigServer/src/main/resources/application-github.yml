@@ -1,0 +1,13 @@
+## SPRING CONFIG SERVER
+spring:
+  application:
+    name: ConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/adellorusso94/git-config-repository.git
+          username: adellorusso94
+          password: 198423giugno1994
+          cloneOnStart: true
+          

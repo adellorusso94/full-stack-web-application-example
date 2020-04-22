@@ -1,0 +1,20 @@
+## ARTICOLI_WEB_SERVICE PROPERTIES
+server:
+  port: 5051
+spring:
+  application:
+    name: Products
+  profiles:
+    active: nossl
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      username: StdUser
+      password: BimBumBam_2020
+      
+## GEST_USER_WEB_SERVICE PROPERTIES
+gestuser:
+  srvUrl: http://localhost:8019/api/utenti/cerca/username/
+  username: ReadUser
+  password: BimBumBam_2020

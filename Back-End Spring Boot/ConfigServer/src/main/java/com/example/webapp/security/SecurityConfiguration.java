@@ -1,5 +1,6 @@
 package com.example.webapp.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -14,30 +15,26 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import com.example.webapp.config.ApplicationConfig;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private ApplicationConfig appConfig;
+	
 	private static String REALM = "REAME";
 	
-	private static final String[] SWAGGER_MATCHER = {
-		"/v2/api-docs",
-		"/swagger-resources",
-		"/swagger-resources/**",
-		"/configuration/ui",
-		"/configuration/security",
-		"/swagger-ui.html",
-		"/webjars/**"
-	};
-	private static final String[] USER_MATCHER = { "/utenti/cerca/**"};
-	private static final String[] ADMIN_MATCHER = { "/utenti/inserisci/**", "/utenti/elimina/**" };
+	private static final String[] USER_MATCHER = { "/**" };
+	private static final String[] ADMIN_MATCHER = { "/actuator/**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable()
 				.authorizeRequests()
-				.antMatchers(SWAGGER_MATCHER).permitAll()
-				.antMatchers(USER_MATCHER).hasAnyRole("USER")
 				.antMatchers(ADMIN_MATCHER).hasAnyRole("ADMIN")
+				.antMatchers(USER_MATCHER).hasAnyRole("USER")
 				.anyRequest().authenticated()
 				.and()
 				.httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint()).and()
@@ -66,12 +63,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		UserBuilder users = User.builder();
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		manager.createUser(users
-				.username("ReadUser")
-				.password(new BCryptPasswordEncoder().encode("BimBumBam_2020"))
+				.username(appConfig.getUserUsername())
+				.password(new BCryptPasswordEncoder().encode(appConfig.getUserPassword()))
 				.roles("USER").build());
 		manager.createUser(users
-				.username("Admin")
-				.password(new BCryptPasswordEncoder().encode("MagicaBula_2020"))
+				.username(appConfig.getAdminUsername())
+				.password(new BCryptPasswordEncoder().encode(appConfig.getAdminPassword()))
 				.roles("USER", "ADMIN").build());
 		return manager;
 	}

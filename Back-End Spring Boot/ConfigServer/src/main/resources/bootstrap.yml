@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: github
+    
+server:
+  port: 8888
+  
+sicurezza:
+  userUsername: StdUser
+  userPassword: BimBumBam_2020
+  adminUsername: AdmUser
+  adminPassword: MagicaBula_2020
