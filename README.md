@@ -11,7 +11,7 @@
 	3. Eureka (Service Discover, port 8761)
 	4. AuthJWT (port 9100)
 	5. Zuul (API Gateway, port 8765)
-	6. Hystrix Dashboard (Circuit Breaker, port ) 
+	6. Hystrix Dashboard (Circuit Breaker, port 9000) 
 	7. Products, PriceArt & Promo, which contain:
 		1. Ribbon (Load Balancer)
 		2. Feign (Declarative REST Client)
