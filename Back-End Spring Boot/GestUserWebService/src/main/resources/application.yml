@@ -1,0 +1,25 @@
+## GESTUSER_WEB_SERVICE PROPERTIES
+server:
+  port: 8019
+spring:
+  application:
+    name: GestUser
+## MONGODBT PROPERTIES
+  data:
+    mongodb:
+      authentication-database: admin
+      database: ms-users
+      host: localhost
+      port: 27017
+      username: plateon
+      password: breh
+     
+#Actuator Properties
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when-authorized

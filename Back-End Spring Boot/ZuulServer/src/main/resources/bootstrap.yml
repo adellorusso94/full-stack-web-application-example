@@ -1,0 +1,39 @@
+remotesrv: 127.0.0.1
+
+spring:
+  profiles:
+    active: profile
+  application:
+    name: Zuul
+  cloud:
+    config:
+      uri: http://${remotesrv}:8888
+      fail-fast: true
+      username: StdUser
+      password: BimBumBam_2020
+  rabbitmq:
+    host: ${remotesrv}
+    port: 5672
+    username: guest
+    password: guest
+server:
+  port: 8765
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when-authorized
+    shutdown:
+      enabled: true
+
+## JWT SECURITY PROPERTIES
+sicurezza:
+  uri: /auth/**
+  header: Authorization
+  prefix: Bearer 
+  expiration: 86400
+  secret: bre_breh

@@ -1,0 +1,30 @@
+## AUTH_SERVER PROPERTIES
+server:
+  port: 9100
+spring:
+  application:
+    name: AuthJWT
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://AdmUser:MagicaBula_2020@localhost:8761/eureka/
+        
+## GEST_USER_WEB_SERVICE PROPERTIES
+gestuser:
+  srvUrl: http://localhost:8019/utenti/cerca/username/
+  username: ReadUser
+  password: BimBumBam_2020
+
+## JWT SECURITY PROPERTIES
+sicurezza:
+  uri: /auth/**
+  header: Authorization
+  prefix: Bearer 
+  expiration: 86400
+  secret: bre_breh

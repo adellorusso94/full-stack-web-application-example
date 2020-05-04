@@ -1,0 +1,96 @@
+spring:
+  profiles: peer1
+  application:
+    name: Eureka
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: peer1
+    metadata-map:
+      zone: zone1
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}-1
+  server:
+    enable-self-preservation: false
+    response-cache-update-interval-ms: 30000
+    eviction-interval-timer-in-ms: 30000
+    wait-time-in-ms-when-sync-empty: 5
+  client:
+    service-url:
+      defaultZone: http://AdmUser:MagicaBula_2020@localhost:8762/eureka/,http://AdmUser:MagicaBula_2020@localhost:8763/eureka/
+
+sicurezza:
+  userUsername: StdUser
+  userPassword: BimBumBam_2020
+  adminUsername: AdmUser
+  adminPassword: MagicaBula_2020
+
+# Avvio: java -jar -Dspring.profiles.active=peer1 -Xmx96m -Xss512k EurekaServer-0.0.1-SNAPSHOT.jar
+
+---
+
+spring:
+  profiles: peer2
+  application:
+    name: Eureka
+server:
+  port: 8762
+
+eureka:
+  instance:
+    hostname: peer2
+    metadata-map:
+      zone: zone2
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}-2
+  server:
+    enable-self-preservation: false
+    response-cache-update-interval-ms: 30000
+    eviction-interval-timer-in-ms: 30000
+    wait-time-in-ms-when-sync-empty: 5
+  client:
+    service-url:
+      defaultZone: http://AdmUser:MagicaBula_2020@localhost:8761/eureka/,http://AdmUser:MagicaBula_2020@localhost:8763/eureka/
+
+sicurezza:
+  userUsername: StdUser
+  userPassword: BimBumBam_2020
+  adminUsername: AdmUser
+  adminPassword: MagicaBula_2020
+
+# Avvio: java -jar -Dspring.profiles.active=peer2 -Xmx96m -Xss512k EurekaServer-0.0.1-SNAPSHOT.jar
+
+---
+
+spring:
+  profiles: peer3
+  application:
+    name: Eureka
+server:
+  port: 8763
+
+eureka:
+  instance:
+    hostname: peer3
+    metadata-map:
+      zone: zone3
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}-3
+  server:
+    enable-self-preservation: false
+    response-cache-update-interval-ms: 30000
+    eviction-interval-timer-in-ms: 30000
+    wait-time-in-ms-when-sync-empty: 5
+  client:
+    service-url:
+      defaultZone: http://AdmUser:MagicaBula_2020@localhost:8761/eureka/,http://AdmUser:MagicaBula_2020@localhost:8762/eureka/
+
+sicurezza:
+  userUsername: StdUser
+  userPassword: BimBumBam_2020
+  adminUsername: AdmUser
+  adminPassword: MagicaBula_2020
+  
+# Avvio: java -jar -Dspring.profiles.active=peer3 -Xmx96m -Xss512k EurekaServer-0.0.1-SNAPSHOT.jar

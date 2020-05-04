@@ -31,14 +31,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-			http.csrf().disable()
-				.authorizeRequests()
-				.antMatchers(ADMIN_MATCHER).hasAnyRole("ADMIN")
-				.antMatchers(USER_MATCHER).hasAnyRole("USER")
-				.anyRequest().authenticated()
-				.and()
-				.httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint()).and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.csrf().disable()
+			.authorizeRequests()
+			.antMatchers(ADMIN_MATCHER).hasAnyRole("ADMIN")
+			.antMatchers(USER_MATCHER).hasAnyRole("USER")
+			.anyRequest().authenticated()
+			.and()
+			.httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint()).and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 	
 	@Bean

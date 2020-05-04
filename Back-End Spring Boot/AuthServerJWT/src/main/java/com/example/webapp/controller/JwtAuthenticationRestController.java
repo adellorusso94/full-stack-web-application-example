@@ -23,10 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webapp.security.JwtTokenUtil;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
 @RestController
 public class JwtAuthenticationRestController {
 
@@ -43,8 +39,6 @@ public class JwtAuthenticationRestController {
 	@Qualifier("customUserDetailsService")
 	private UserDetailsService userDetailsService;
 	
-	@ApiOperation(value = "Crea token di autenticazione", notes = "Restituisce Token in formato JSON", produces = "application/json")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Token Generato" )})
 	@PostMapping(value = "${sicurezza.uri}")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
 			throws AuthenticationException {
@@ -54,8 +48,6 @@ public class JwtAuthenticationRestController {
 		return ResponseEntity.ok(new JwtTokenResponse(token));
 	}
 	
-	@ApiOperation(value = "Refresha token di autenticazione", notes = "Restituisce Token in formato JSON", produces = "application/json")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Token Refreshato" )})
 	@GetMapping(value = "${sicurezza.uri}")
 	public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
 		String authToken = request.getHeader(tokenHeader);

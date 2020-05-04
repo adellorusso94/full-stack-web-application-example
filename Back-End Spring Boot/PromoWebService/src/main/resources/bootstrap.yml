@@ -1,0 +1,70 @@
+## PROMO_WEB_SERVICE PROPERTIES
+remotesrv: 127.0.0.1
+
+server:
+  port: 5061
+spring:
+  profiles:
+    active: zone1
+  application:
+    name: Promo
+  cloud:
+    config:
+      uri: http://${remotesrv}:8888
+      fail-fast: true
+      username: StdUser
+      password: BimBumBam_2020
+  rabbitmq:
+    host: ${remotesrv}
+    port: 5672
+    username: guest
+    password: guest
+  zipkin:
+    base-url: http:localhost:9411/
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0
+    trace-id128: false
+  devtools:
+    restart:
+      log-condition-evaluation-delta: false
+
+# Eureka Properties
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 60
+    lease-renewal-interval-in-seconds: 15
+    instance-id: ${spring.application.name}-1
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://AdmUser:MagicaBula_2020@localhost:8761/eureka/
+
+#Actuator Properties
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+       
+## GEST_USER_WEB_SERVICE PROPERTIES
+gestuser:
+  srvUrl: http://${remotesrv}:8019/utenti/cerca/username/
+  username: ReadUser
+  password: BimBumBam_2020
+
+## JWT SECURITY PROPERTIES
+sicurezza:
+  uri: /auth
+  refresh: /refresh
+  header: Authorization
+  prefix: Bearer 
+  expiration: 86400
+  secret: bre_breh

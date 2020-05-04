@@ -28,12 +28,8 @@ import com.example.webapp.service.UtentiService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
 @RestController
-@RequestMapping(value = "/api/utenti")
+@RequestMapping(value = "/utenti")
 public class UtentiController {
 
 	@Autowired
@@ -45,28 +41,16 @@ public class UtentiController {
 	@Autowired
 	private ResourceBundleMessageSource errMessage;
 	
-	@ApiOperation(value = "Ricerca tutti gli utenti", notes = "Restituisce i dati degli utenti in formato JSON", response = List.class, produces = "application/json")
-	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Utenti Trovati"),
-			@ApiResponse(code = 404, message = "Utenti Non Trovati") })
 	@GetMapping(value = "/cerca/tutti")
 	public List<Utenti> getUtenti() {
 		return utentiService.getAll();
 	}
 	
-	@ApiOperation(value = "Ricerca l'utente", notes = "Restituisce i dati dell'utente in formato JSON", response = Utenti.class, produces = "application/json")
-	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Utente Trovato"),
-			@ApiResponse(code = 404, message = "Utente Non Trovato") })
 	@GetMapping(value = "/cerca/username/{username}")
 	public Utenti getUtente(@PathVariable("username") String username) {
 		return utentiService.getOne(username);
 	}
 	
-	@ApiOperation(value = "Aggiungi l'utente", notes = "Restituisce messaggio di stato in formato JSON", produces = "application/json")
-	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Utente Inserito"),
-			@ApiResponse(code = 400, message = "Dati Utente in Formato Errato") })
 	@PostMapping(value = "/inserisci")
 	public ResponseEntity<?> addNewUser(@Valid @RequestBody Utenti utente, BindingResult bindingResult)
 			throws BindingException {
@@ -86,10 +70,6 @@ public class UtentiController {
 		return new ResponseEntity<>(responseNode, headers, HttpStatus.CREATED);
 	}
 	
-	@ApiOperation(value = "Elimina l'utente", notes = "Restituisce un messaggio di stato in formato JSON", produces = "application/json")
-	@ApiResponses(value = { 
-			@ApiResponse(code = 200, message = "Utente Eliminato"),
-			@ApiResponse(code = 404, message = "Utente Non Trovato")})
 	@DeleteMapping(value = "/elimina/{username}")
 	public ResponseEntity<?> deleteUser(@PathVariable("username") String username) throws NotFoundException {
 		Utenti utente = utentiService.getOne(username);
