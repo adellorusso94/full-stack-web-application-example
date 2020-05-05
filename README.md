@@ -1,8 +1,8 @@
 # full-stack-web-application-example
  Front End in Angular, Back End in Spring Boot
  
- 1. Start MongoDB Service with this command:
-		mongod --auth --port 27017 --dbpath C:\data\db
+ 1. Start MongoDB, RabbitMQ in Docker with this command:
+ 		docker start (IDContenitore)
  2. Launch Zipkin with this command (port 9411):
  		java -jar zipkin.jar
  3. Start Spring Boot web-services in this order:
