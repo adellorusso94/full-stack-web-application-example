@@ -1,7 +1,7 @@
 # full-stack-web-application-example
  Front End in Angular, Back End in Spring Boot
  
- 1. Start MongoDB, RabbitMQ in Docker with this command:
+ 1. Start MongoDB, RabbitMQ and Zipkin in Docker with this command:
  		docker start (IDContenitore)
  2. Launch Zipkin with this command (port 9411):
  		java -jar zipkin.jar
