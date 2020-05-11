@@ -6,8 +6,8 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/adellorusso94/git-config-repository.git
-          username: adellorusso94
-          password: 198423giugno1994
+          uri: https://github.com/<--username-->/git-config-repository.git
+          username: <--username-->
+          password: <--password-->
           cloneOnStart: true
           
